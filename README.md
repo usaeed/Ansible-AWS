@@ -74,5 +74,17 @@ ansible -b -m user -a 'name=testuser state=absent' -e 'ansible_python_interprete
    - basic
  [save and exit]
 
+#IP address of webserver (172.31.33.250)
+vi ~/myplatform/hosts
+172.31.33.250 ansible_python_interpreter=/usr/bin/python3
+[save and exit]
+
+# Now Test the playbook
+ansible-playbook playbook.yml
+
+
+
+
+
 
 
