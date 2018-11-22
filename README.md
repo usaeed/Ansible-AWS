@@ -61,7 +61,7 @@ ansible -b -m user -a 'name=testuser state=absent' -e 'ansible_python_interprete
  
  vi main.yml
  - name: "Installing VIM"
-   apt: pkg=vim state=installed
+   apt: pkg=vim state=present
  [save and exit]
 
  cd ~/myplatform/
