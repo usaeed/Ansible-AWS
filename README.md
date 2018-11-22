@@ -45,7 +45,7 @@ ansible -m ping -e 'ansible_python_interpreter=/usr/bin/python3' all
     "ping": "pong"
 }
 
-
+# Ansible-AWS
 #Ansible Cheat Sheet - Run the below commands from controlnode only
 
 ansible -m shell -a 'hostname' -e 'ansible_python_interpreter=/usr/bin/python3' all
