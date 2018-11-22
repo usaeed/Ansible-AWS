@@ -45,7 +45,7 @@ ansible -m ping -e 'ansible_python_interpreter=/usr/bin/python3' all
     "ping": "pong"
 }
 
-# Ansible-AWS
+# Ansible-AWS Shell module
 #Ansible Cheat Sheet - Run the below commands from controlnode only
 
 ansible -m shell -a 'hostname' -e 'ansible_python_interpreter=/usr/bin/python3' all
@@ -54,4 +54,25 @@ ansible -m shell -a 'whoami' -e 'ansible_python_interpreter=/usr/bin/python3' al
 ansible -b -m user -a 'name=testuser' -e 'ansible_python_interpreter=/usr/bin/python3' all
 ansible -m shell -a 'getent passwd | grep testuser' -e 'ansible_python_interpreter=/usr/bin/python3' all
 ansible -b -m user -a 'name=testuser state=absent' -e 'ansible_python_interpreter=/usr/bin/python3' all
+
+# Ansible-AWS Roles
+ mkdir roles/basic
+ mkdir roles/basic/tasks
+ 
+ vi main.yml
+ - name: "Installing VIM"
+   apt: pkg=vim state=installed
+ [save and exit]
+
+ cd ~/myplatform/
+
+ vi playbook.yml
+ ---
+ - hosts: all
+   become: true
+   roles:
+   - basic
+ [save and exit]
+
+
 
