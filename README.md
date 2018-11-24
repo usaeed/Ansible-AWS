@@ -63,11 +63,34 @@ Login into controlnode and run the following commands,
     echo "inventory      = hosts" >> ansible.cfg
     echo "............Hi, success the end...................."
     
-    9  Uncomment this line inventory = hosts in the ansible.cfg file and save and exit
-    10 vi hosts -> delete everything by hitting shift :1,$d -> now add the private ip of webserver -> save and exit
-
+     # Let us know get the private ip address of all EC2 instances
+     
+     1. sudo apt  install awscli (run this on controlnode)
+     2. Go to AWS console -> Create a new user e.g. ansibleuser -> Give it programatic access -> Create Access Key and Secret Access Key make a note of these before running below step 3.
+     3. aws configure 
+      AWS Access Key ID [None]: AKIAJXFSTKHAWSEDRFTG
+      AWS Secret Access Key [None]: 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
+      Default region name [us-east-1]:us-east-1
+      Default output format [None]:
+      aws ec2 describe-instances | grep PublicIpAddress | grep -o -P "\d+\.\d+\.\d+\.\d+" | grep -v '^10\.'
+      100.26.111.65
+      54.99.312.99
+      34.258.146.17
+      34.768.154.21
+      aws ec2 describe-instances | grep PrivateIpAddress | grep -o -P "\d+\.\d+\.\d+\.\d+" | grep -v '^10\.' | uniq
+      172.31.96.111
+      172.31.96.239
+      172.31.81.214
+      172.31.95.512
+      4. aws ec2 describe-instances | grep PrivateIpAddress | grep -o -P "\d+\.\d+\.\d+\.\d+" | grep -v '^10\.' | uniq >> hosts
     
-    Weldone now you have manage to setup connectivity b.w. both EC2 instances controlnode and webserver now lets test
+
+    # Verify you changes  
+         
+    1  Uncomment this line inventory = hosts in the ansible.cfg file and save and exit
+    2 vi hosts -> delete everything by hitting shift :1,$d -> now add the private ip of webserver -> save and exit
+
+   Weldone now you have manage to setup connectivity b.w. both EC2 instances controlnode and webserver now lets test
 
 Step 5: 
 #From controlnode run the following command 
