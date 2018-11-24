@@ -43,14 +43,26 @@ Login into controlnode and run the following commands,
     
     
    # Setup controlnode
-    1  apt-add-repository ppa:ansible/ansible
-    2  apt-get update
-    3  apt-get install ansible
-    4  ansible --version
-    5  ls -lha /etc/ansible/
-    6  cp -R /etc/ansible myplatform
-    7  cd myplatform/
-    8  ls -ltr
+    sudo apt install linuxlogo
+    linuxlogo
+    echo "Hi, lets add ansible to the repository...................."
+    sudo apt-add-repository ppa:ansible/ansible -y
+    echo "Hi, lets update the operating system...................."
+    sudo apt-get update -y
+    echo "Hi, lets install ansible...................."
+    sudo apt-get install ansible -y
+    echo "Hi, lets check version ansible...................."
+    ansible --version
+    echo "Hi, lets check ansible directory ...................."
+    ls -lha /etc/ansible/
+    echo "Hi, lets copy ansible directories recursively ...................."
+    cp -R /etc/ansible myplatform
+    echo "Hi, lets cd into myplaform direcotory ...................."
+    cd myplatform/
+    ls -ltr
+    echo "inventory      = hosts" >> ansible.cfg
+    echo "............Hi, success the end...................."
+    
     9  Uncomment this line inventory = hosts in the ansible.cfg file and save and exit
     10 vi hosts -> delete everything by hitting shift :1,$d -> now add the private ip of webserver -> save and exit
 
