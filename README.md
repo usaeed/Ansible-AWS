@@ -1,13 +1,7 @@
 # Pre-requisite 
 
-ubuntu@ip-172-31-82-219:~$ lsb_release -a
-No LSB modules are available.
-Distributor ID: Ubuntu
-Description:    Ubuntu 18.04.1 LTS
-Release:        18.04
-Codename:       bionic
-
-
+What image to use in AWS?
+Ubuntu Server 18.04 LTS (HVM), SSD Volume Type - ami-0ac019f4fcb7cb7e6
 
 # Ansible-AWS
 Ansible with AWS
@@ -15,10 +9,20 @@ Ansible with AWS
 Step by Step
 
 Step 1: 
-Create EC2 instance ubuntu call it controlnode
+Create EC2 instances (check Pre-requisite for selecting the image)
+Instance1: controlnode 
+Instance2: webserver 
+Instance3: appserver 
+Instance4: dbserver
 
 Step 2:
-Create EC2 instance ubuntu call it webserver
+Login to controlnode and run the following command to check release version
+ubuntu@ip-172-31-82-219:~$ lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 18.04.1 LTS
+Release:        18.04
+Codename:       bionic
 
 Step 3:
 Assign both EC2 instances to security group called My-Web-DMZ (Allow all traffic rules for both inbound and outbound)
@@ -26,15 +30,17 @@ Assign both EC2 instances to security group called My-Web-DMZ (Allow all traffic
 Step 4:
 Login into controlnode and run the following commands,
 
-   # Setup connectivity b.w. controlnode -> webserver (repease step 1 to 5 with all nodes e.g. controlnode -> node1, controlnode -> node2, controlnode-> node3) 
+   # Setup connectivity b.w. controlnode -> webserver, controlnode -> appserver, controlnode -> dbserver
     1  ssh-keygen
-    2  ssh-copy-id 172.31.33.250
+    2  ssh-copy-id 172.31.33.250 #ip address of your webserver, appserver & dbserver
     3  cat ~/.ssh/id_rsa.pub
     [select and copy to your clipboard]
     4 Login to webserver using putty 
     5 cat >> ~/.ssh/authorized_keys
     [paste your clipboard contents]
     [ctrl+d to exit]
+    6. ssh 172.31.33.250 #ip address of your webserver, appserver & dbserver (Tip: Ensure security group allows ssh traffic b.w. all nodes)
+    
     
    # Setup controlnode
     1  apt-add-repository ppa:ansible/ansible
