@@ -15,24 +15,28 @@ Assign both EC2 instances to security group called My-Web-DMZ (Allow all traffic
 Step 4:
 Login into controlnode and run the following commands,
 
-    1  apt-add-repository ppa:ansible/ansible
-    2  apt-get update
-    3  apt-get install ansible
-    4  ansible --version
-    5  ls -lha /etc/ansible/
-    6  cp -R /etc/ansible myplatform
-    7  cd myplatform/
-    8  ls -ltr
-    9  Uncomment this line inventory = hosts in the ansible.cfg file and save and exit
-    10 vi hosts -> delete everything by hitting shift :1,$d -> now add the private ip of webserver -> save and exit
-    11  ssh-keygen
-    12  ssh-copy-id 172.31.33.250
-    13  cat ~/.ssh/id_rsa.pub
+   # Setup connectivity b.w. controlnode -> webserver (repease step 1 to 5 with all nodes e.g. controlnode -> node1, controlnode -> node2, controlnode-> node3) 
+    1  ssh-keygen
+    2  ssh-copy-id 172.31.33.250
+    3  cat ~/.ssh/id_rsa.pub
     [select and copy to your clipboard]
-    14 Login to webserver using putty 
-    15 cat >> ~/.ssh/authorized_keys
+    4 Login to webserver using putty 
+    5 cat >> ~/.ssh/authorized_keys
     [paste your clipboard contents]
     [ctrl+d to exit]
+    
+   # Setup controlnode
+    6  apt-add-repository ppa:ansible/ansible
+    7  apt-get update
+    8  apt-get install ansible
+    9  ansible --version
+    10  ls -lha /etc/ansible/
+    11  cp -R /etc/ansible myplatform
+    12  cd myplatform/
+    13  ls -ltr
+    14  Uncomment this line inventory = hosts in the ansible.cfg file and save and exit
+    15 vi hosts -> delete everything by hitting shift :1,$d -> now add the private ip of webserver -> save and exit
+
     
     Weldone now you have manage to setup connectivity b.w. both EC2 instances controlnode and webserver now lets test
 
