@@ -1,3 +1,14 @@
+# Pre-requisite 
+
+ubuntu@ip-172-31-82-219:~$ lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 18.04.1 LTS
+Release:        18.04
+Codename:       bionic
+
+
+
 # Ansible-AWS
 Ansible with AWS
 
@@ -26,16 +37,16 @@ Login into controlnode and run the following commands,
     [ctrl+d to exit]
     
    # Setup controlnode
-    6  apt-add-repository ppa:ansible/ansible
-    7  apt-get update
-    8  apt-get install ansible
-    9  ansible --version
-    10  ls -lha /etc/ansible/
-    11  cp -R /etc/ansible myplatform
-    12  cd myplatform/
-    13  ls -ltr
-    14  Uncomment this line inventory = hosts in the ansible.cfg file and save and exit
-    15 vi hosts -> delete everything by hitting shift :1,$d -> now add the private ip of webserver -> save and exit
+    1  apt-add-repository ppa:ansible/ansible
+    2  apt-get update
+    3  apt-get install ansible
+    4  ansible --version
+    5  ls -lha /etc/ansible/
+    6  cp -R /etc/ansible myplatform
+    7  cd myplatform/
+    8  ls -ltr
+    9  Uncomment this line inventory = hosts in the ansible.cfg file and save and exit
+    10 vi hosts -> delete everything by hitting shift :1,$d -> now add the private ip of webserver -> save and exit
 
     
     Weldone now you have manage to setup connectivity b.w. both EC2 instances controlnode and webserver now lets test
