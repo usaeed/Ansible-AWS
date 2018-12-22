@@ -3,6 +3,9 @@
 What image to use in AWS?
 Ubuntu Server 18.04 LTS (HVM), SSD Volume Type - ami-0ac019f4fcb7cb7e6
 
+# Optional tool 
+Solar-PuTTY
+
 # Ansible-AWS
 Ansible with AWS
 
