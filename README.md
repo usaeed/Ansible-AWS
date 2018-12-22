@@ -138,11 +138,10 @@ vi ~/myplatform/hosts
 172.31.33.250 ansible_python_interpreter=/usr/bin/python3
 [save and exit]
 
-# Before testing ansible play book make sure to update the hosts file with python as below
-ubuntu@controlnode:~/myplatform$ cat hosts
-webserver ansible_python_interpreter=/usr/bin/python3
-appserver ansible_python_interpreter=/usr/bin/python3
-dbserver ansible_python_interpreter=/usr/bin/python3
+# Add python interpreter to hosts file on control node
+
+vi hosts -> webserver ansible_python_interpreter=/usr/bin/python3
+
 
 # Now Test the playbook
 ansible-playbook playbook.yml
